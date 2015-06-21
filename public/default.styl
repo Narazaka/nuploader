@@ -1,0 +1,68 @@
+@import 'nib'
+
+global-reset()
+
+*
+	font-family Meiryo
+
+header
+	padding 1em
+	h1
+		font-size xx-large
+	p
+		font-size small
+
+article
+	clearfix()
+	.page_message
+		padding 0.5em
+		color #fff
+		&.info
+			background #0c0
+		&.error
+			background #f00
+	.uploader
+		float left
+		padding 0.5em
+		max-width 20em
+		label
+			padding 0 0.5em 0 0
+		p
+			padding 0.2em
+		[type="file"]
+			width 100%
+		[type="password"]
+			width 10em
+		#description
+			width 100%
+	.list
+		float left
+		padding 0.5em
+		form
+			display inline
+			[type="password"]
+				width 10em
+		ul
+			border-top 1px solid #ccc
+			li
+				clearfix()
+				border-bottom 1px solid #ccc
+				line-height 2em
+				.view
+					padding 0 1em
+					[type="submit"]
+						font-weight bold
+						border none
+						background transparent
+						font-size medium
+						cursor pointer
+						&:hover
+							color #00c
+				.description
+					padding 0 1em
+					color #666
+				.delete
+					float right
+
+footer
+	padding 0.5em

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><%= stylesheet '/default.css' %><!--[if lt IE 9]>
+    <script src="lt-ie-9.min.js"></script><![endif]-->
+
+    <title><%= title %></title>
+  </head>
+  <body>
+    <header>
+      <h1><%= title %></h1>
+    </header>
+    <article><% my $info = flash 'info'; if($info){ %>
+      <aside class="page_message info"><%= $info %></aside><% } %>
+      <% my $error = flash 'error'; if($error){ %>
+      <aside class="page_message error"><%= $error %></aside><% } %>
+      <section class="uploader"><%= form_for '/upload/' => (method => 'post', enctype => 'multipart/form-data') => begin %>
+        <p>
+          <label for="file">ファイル</label><%= file_field 'file', id => 'file' %>
+        </p>
+        <p>
+          <label for="view_password">閲覧パスワード</label><%= password_field 'view_password', id => 'view_password' %>
+        </p>
+        <p>
+          <label for="delete_password">削除パスワード</label><%= password_field 'delete_password', id => 'delete_password' %>
+        </p>
+        <p>
+          <label for="description">説明</label><%= text_field 'description', id => 'description' %>
+        </p>
+        <p><%= submit_button 'アップロード' %></p>
+        <p class="warning">削除パスワードを指定しない場合、管理者しか消せなくなります。</p>
+        <p class="warning"><%= sprintf('%.1f', $ENV{MOJO_MAX_MESSAGE_SIZE} / (1024 ** 2)) . 'MBまでです。' %></p><% end %>
+      </section>
+      <section class="list">
+        <ul>
+          <% for my $item (reverse @$list){ %>
+          <% if(exists $item->{filename}){ %>
+          <li><span class="view">
+              <%= form_for '/file/' . b($item->{filename})->encode->url_escape => begin %>
+              <%= submit_button $item->{filename} %>
+              <% if(length $item->{view_password_sha256_hex}){ %>
+              <input name="view_password" type="password" placeholder="閲覧パスワード"><% } %>
+              <% end %></span><span class="description"><%= $item->{description} %></span><span class="delete"><%= form_for '/delete/' . b($item->{filename})->encode->url_escape => begin %>
+              <input type="submit" value="削除">
+              <input name="delete_password" type="password"><% end %></span></li><% } %>
+          <% } %>
+        </ul>
+      </section>
+    </article>
+    <footer>(C) 2014 Narazaka</footer>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+doctype html
+html
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		| <%= stylesheet '/default.css' %>
+		!= '<!--[if lt IE 9]>'
+		script(src="lt-ie-9.min.js")
+		!= '<![endif]-->\n'
+		title <%= title %>
+	body
+		header
+			h1 <%= title %>
+		article
+			| <% my $info = flash 'info'; if($info){ %>
+			aside.page_message.info <%= $info %>
+			| <% } %>
+			| <% my $error = flash 'error'; if($error){ %>
+			aside.page_message.error <%= $error %>
+			| <% } %>
+			section.uploader
+				| <%= form_for '/upload/' => (method => 'post', enctype => 'multipart/form-data') => begin %>
+				p
+					label(for="file") ファイル
+					| <%= file_field 'file', id => 'file' %>
+				p
+					label(for="view_password") 閲覧パスワード
+					| <%= password_field 'view_password', id => 'view_password' %>
+				p
+					label(for="delete_password") 削除パスワード
+					| <%= password_field 'delete_password', id => 'delete_password' %>
+				p
+					label(for="description") 説明
+					| <%= text_field 'description', id => 'description' %>
+				p
+					| <%= submit_button 'アップロード' %>
+				p.warning 削除パスワードを指定しない場合、管理者しか消せなくなります。
+				p.warning <%= sprintf('%.1f', $ENV{MOJO_MAX_MESSAGE_SIZE} / (1024 ** 2)) . 'MBまでです。' %>
+				| <% end %>
+			section.list
+				ul
+					| <% for my $item (reverse @$list){ %>
+					| <% if(exists $item->{filename}){ %>
+					li
+						span.view
+							| <%= form_for '/file/' . b($item->{filename})->encode->url_escape => begin %>
+							| <%= submit_button $item->{filename} %>
+							| <% if(length $item->{view_password_sha256_hex}){ %>
+							input(name="view_password", type="password", placeholder="閲覧パスワード")
+							| <% } %>
+							| <% end %>
+						span.description <%= $item->{description} %>
+						span.delete
+							| <%= form_for '/delete/' . b($item->{filename})->encode->url_escape => begin %>
+							input(type="submit", value="削除")
+							input(name="delete_password", type="password")
+							| <% end %>
+					| <% } %>
+					| <% } %>
+		footer
+			| (C) 2014 Narazaka

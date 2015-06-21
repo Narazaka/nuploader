@@ -1,0 +1,10 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>404 Not Found</title>
+</head>
+<body>
+<a href="<%= url_for 'index' %>"><img src="<%= url_for '/404.png' %>" alt="404"></a>
+</body>
+</html>

@@ -1,0 +1,193 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+* {
+  font-family: Meiryo;
+}
+header {
+  padding: 1em;
+}
+header h1 {
+  font-size: xx-large;
+}
+header p {
+  font-size: small;
+}
+article {
+  zoom: 1;
+}
+article:before,
+article:after {
+  content: "";
+  display: table;
+}
+article:after {
+  clear: both;
+}
+article .page_message {
+  padding: 0.5em;
+  color: #fff;
+}
+article .page_message.info {
+  background: #0c0;
+}
+article .page_message.error {
+  background: #f00;
+}
+article .uploader {
+  float: left;
+  padding: 0.5em;
+  max-width: 20em;
+}
+article .uploader label {
+  padding: 0 0.5em 0 0;
+}
+article .uploader p {
+  padding: 0.2em;
+}
+article .uploader [type="file"] {
+  width: 100%;
+}
+article .uploader [type="password"] {
+  width: 10em;
+}
+article .uploader #description {
+  width: 100%;
+}
+article .list {
+  float: left;
+  padding: 0.5em;
+}
+article .list form {
+  display: inline;
+}
+article .list form [type="password"] {
+  width: 10em;
+}
+article .list ul {
+  border-top: 1px solid #ccc;
+}
+article .list ul li {
+  zoom: 1;
+  border-bottom: 1px solid #ccc;
+  line-height: 2em;
+}
+article .list ul li:before,
+article .list ul li:after {
+  content: "";
+  display: table;
+}
+article .list ul li:after {
+  clear: both;
+}
+article .list ul li .view {
+  padding: 0 1em;
+}
+article .list ul li .view [type="submit"] {
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  font-size: medium;
+  cursor: pointer;
+}
+article .list ul li .view [type="submit"]:hover {
+  color: #00c;
+}
+article .list ul li .description {
+  padding: 0 1em;
+  color: #666;
+}
+article .list ul li .delete {
+  float: right;
+}
+footer {
+  padding: 0.5em;
+}
